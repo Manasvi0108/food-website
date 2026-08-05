@@ -1,162 +1,216 @@
- <!DOCTYPE html>
- <html lang="en">
- <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Zomato - Order Food Online</title>
-    <link rel="stylesheet" href="styles.css">
- </head>
- <body>
-    <header>
-        <div class="logo">
-            <img src="images/zomato.png" alt="">
-        </div>
-        <ul>
-            <li><a href="">Investor Relations</a></li>
-            <li><a href="">Add Restaurant</a></li>
-            <li><a href="">Log in</a></li>
-            <li><a href="">Sign up</a></li>
-            <li>
-    <img src="https://ui-avatars.com/api/?name=Manasvi+Gupta&background=ef4f5f&color=fff&size=60"
-         class="profile-icon"
-         id="profileBtn"
-         alt="Profile">
-</li>
-        </ul>
-    </header>
-    <main>
-        <video autoplay muted loop playsinline class="bg-video">
-        <source src="videos/12261604_1080_1920_30fps.mp4" type="video/mp4">
-    </video>
 
-    <div class="overlay"></div>
-         <h1>Zomato</h1>
-        <p>Order food from your favorite restaurants near you.</p>  
-        <input type="text" placeholder="Enter your delivery location">  
-        <div class="scroll-down">
-    <span>Scroll Down</span>
-    <div class="mouse">
-        <div class="wheel"></div>
-    </div>
-</div>
+    <!-- Basic security & privacy headers -->
+    <meta name="robots" content="noindex, nofollow" />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+
+    <!-- Content Security Policy (adjust as needed) -->
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="
+        default-src 'self';
+        script-src 'self';
+        style-src 'self' 'unsafe-inline';
+        img-src 'self' https://ui-avatars.com data:;
+        font-src 'self';
+        connect-src 'self';
+        base-uri 'self';
+        form-action 'self';
+        frame-ancestors 'none';
+      "
+    />
+
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+
+  <body>
+    <header>
+      <div class="logo">
+        <img src="images/zomato.png" alt="Zomato logo" />
+      </div>
+      <nav aria-label="Main navigation">
+        <ul>
+          <li><a href="investor-relations.html">Investor Relations</a></li>
+          <li><a href="add-restaurant.html">Add Restaurant</a></li>
+          <li><a href="login.html">Log in</a></li>
+          <li><a href="signup.html">Sign up</a></li>
+          <li>
+            <img
+              src="https://ui-avatars.com/api/?name=Manasvi+Gupta&background=ef4f5f&color=fff&size=60"
+              class="profile-icon"
+              id="profileBtn"
+              alt="Open profile menu"
+              role="button"
+              tabindex="0"
+            />
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <video autoplay muted loop playsinline class="bg-video">
+        <source src="videos/12261604_1080_1920_30fps.mp4" type="video/mp4" />
+      </video>
+
+      <div class="overlay"></div>
+
+      <h1>Zomato</h1>
+      <p>Order food from your favorite restaurants near you.</p>
+
+      <label for="locationInput" class="visually-hidden">
+        Enter your delivery location
+      </label>
+      <input
+        id="locationInput"
+        type="text"
+        placeholder="Enter your delivery location"
+        autocomplete="off"
+        inputmode="text"
+      />
+
+      <div class="scroll-down">
+        <span>Scroll Down</span>
+        <div class="mouse">
+          <div class="wheel"></div>
+        </div>
+      </div>
     </main>
 
-<section class="collections">
-    <h2>Popular Collections</h2>
-    <p>Explore curated lists of top restaurants, cafes, pubs and bars.</p>
+    <section class="collections" aria-labelledby="collections-heading">
+      <h2 id="collections-heading">Popular Collections</h2>
+      <p>Explore curated lists of top restaurants, cafes, pubs and bars.</p>
 
-    <div class="cards">
-
-    <div class="card">
-       <img src="image/pizza-8635314_1280.jpg" alt="Pizza">
-        <div class="card-content">
+      <div class="cards">
+        <article class="card">
+          <img src="image/pizza-8635314_1280.jpg" alt="Pizza" />
+          <div class="card-content">
             <h3>Best Pizza</h3>
-        </div>
-    </div>
+          </div>
+        </article>
 
-    <div class="card">
-     <img src="image/burger.jpg" alt="Burger">  
-        <div class="card-content">
+        <article class="card">
+          <img src="image/burger.jpg" alt="Burger" />
+          <div class="card-content">
             <h3>Burgers</h3>
-        </div>
-    </div>
+          </div>
+        </article>
 
-    <div class="card">
-      <img src="image/2biryani.webp" alt="Biryani">  
-        <div class="card-content">
+        <article class="card">
+          <img src="image/2biryani.webp" alt="Biryani" />
+          <div class="card-content">
             <h3>Biryani</h3>
-        </div>
-    </div>
+          </div>
+        </article>
+      </div>
+    </section>
 
-</div>
-</section>
-<section class="about">
-   
+    <section class="about" aria-labelledby="about-heading">
+      <img src="images/burger.png" class="burger" alt="" aria-hidden="true" />
+      <img src="images/momo.png" class="momo" alt="" aria-hidden="true" />
+      <img src="images/pizza.png" class="pizza" alt="" aria-hidden="true" />
+      <img src="images/tomato.png" class="tomato1" alt="" aria-hidden="true" />
+      <img src="images/tomato.png" class="tomato2" alt="" aria-hidden="true" />
 
-
-    <img src="images/burger.png" class="burger" alt="">
-    <img src="images/momo.png" class="momo" alt="">
-    <img src="images/pizza.png" class="pizza" alt="">
-    <img src="images/tomato.png" class="tomato1" alt="">
-    <img src="images/tomato.png" class="tomato2" alt="">
-
-    <div class="about-content">
-        <h2>Better food for <br> more people</h2>
-
+      <div class="about-content">
+        <h2 id="about-heading">Better food for <br />more people</h2>
         <p>
-            For over a decade, we've enabled our customers
-            to discover new tastes, delivered right to their doorstep.
+          For over a decade, we've enabled our customers to discover new tastes,
+          delivered right to their doorstep.
         </p>
-    </div>
+      </div>
 
-    <div class="stats">
-
+      <div class="stats" aria-label="Key statistics">
         <div class="box">
-            <h3>3,00,000+</h3>
-            <span>Restaurants</span>
-        </div>
-
-        <div class="box">
-            <h3>800+</h3>
-            <span>Cities</span>
+          <h3>3,00,000+</h3>
+          <span>Restaurants</span>
         </div>
 
         <div class="box">
-            <h3>3 Billion+</h3>
-            <span>Orders Delivered</span>
+          <h3>800+</h3>
+          <span>Cities</span>
         </div>
 
+        <div class="box">
+          <h3>3 Billion+</h3>
+          <span>Orders Delivered</span>
+        </div>
+      </div>
+    </section>
+
+    <section
+      class="reviews"
+      aria-labelledby="reviews-heading"
+      aria-label="Customer reviews"
+    >
+      <h2 id="reviews-heading">What Our Customers Say</h2>
+      <p>Thousands of food lovers trust Zomato every day.</p>
+
+      <div class="review-container">
+        <article class="review-card">
+          <img
+            src="https://ui-avatars.com/api/?name=Rahul+Sharma&background=ef4f5f&color=fff&size=100"
+            alt="Photo of Rahul Sharma"
+          />
+          <h3>Rahul Sharma</h3>
+          <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
+          <p>
+            "Amazing food quality and super fast delivery. Highly recommended!"
+          </p>
+        </article>
+
+        <article class="review-card">
+          <img
+            src="https://ui-avatars.com/api/?name=Priya+Verma&background=ef4f5f&color=fff&size=100"
+            alt="Photo of Priya Verma"
+          />
+          <h3>Priya Verma</h3>
+          <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
+          <p>
+            "The app is very easy to use and restaurants have great variety."
+          </p>
+        </article>
+
+        <article class="review-card">
+          <img
+            src="https://ui-avatars.com/api/?name=Aditya+Singh&background=ef4f5f&color=fff&size=100"
+            alt="Photo of Aditya Singh"
+          />
+          <h3>Aditya Singh</h3>
+          <div class="stars" aria-label="4 out of 5 stars">★★★★☆</div>
+          <p>
+            "Excellent customer service and delicious meals every time."
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <footer>
+      <!-- Add footer links, copyright, etc. here -->
+    </footer>
+
+    <!-- Profile panel (hidden by default, controlled via JS) -->
+    <div class="profile-panel" id="profilePanel" role="dialog" aria-modal="true" aria-labelledby="profilePanelTitle">
+      <span class="close-btn" id="closeBtn" aria-label="Close profile panel">&times;</span>
+
+      <img
+        src="https://ui-avatars.com/api/?name=Manasvi+Gupta&background=ef4f5f&color=fff&size=120"
+        alt="Manasvi Gupta profile picture"
+      />
+      <h2 id="profilePanelTitle">Manasvi Gupta</h2>
+
+      <p><strong>Email:</strong> manasvi@email.com</p>
+      <p><strong>Phone:</strong> +91 9876543210</p>
+      <p><strong>City:</strong> Nagpur</p>
+      <p><strong>Favourite Food:</strong> Pizza 🍕</p>
     </div>
 
-</section>
- <section class="reviews">
-
-    <h2>What Our Customers Say</h2>
-    <p>Thousands of food lovers trust Zomato every day.</p>
-
-    <div class="review-container">
-
-        <div class="review-card">
-          <img src="https://ui-avatars.com/api/?name=Rahul+Sharma&background=ef4f5f&color=fff&size=100" alt="Rahul Sharma">
-            <h3>Rahul Sharma</h3>
-            <div class="stars">★★★★★</div>
-            <p>"Amazing food quality and super fast delivery. Highly recommended!"</p>
-        </div>
-
-        <div class="review-card">
-           <img src="https://ui-avatars.com/api/?name=Priya+Verma&background=ef4f5f&color=fff&size=100" alt="Priya Verma"> 
-            <h3>Priya Verma</h3>
-            <div class="stars">★★★★★</div>
-            <p>"The app is very easy to use and restaurants have great variety."</p>
-        </div>
-
-        <div class="review-card">
-         <img src="https://ui-avatars.com/api/?name=Aditya+Singh&background=ef4f5f&color=fff&size=100" alt="Aditya Singh">   
-            <h3>Aditya Singh</h3>
-            <div class="stars">★★★★☆</div>
-            <p>"Excellent customer service and delicious meals every time."</p>
-        </div>
-
-    </div>
-</section>
-<footer></footer>
-       <script src="js/script.js"></script>
-       <div class="profile-panel" id="profilePanel">
-
-    <span class="close-btn" id="closeBtn">&times;</span>
-
-    <img src="https://ui-avatars.com/api/?name=Manasvi+Gupta&background=ef4f5f&color=fff&size=120">
-
-    <h2>Manasvi Gupta</h2>
-
-    <p><strong>Email:</strong> manasvi@email.com</p>
-
-    <p><strong>Phone:</strong> +91 9876543210</p>
-
-    <p><strong>City:</strong> Nagpur</p>
-
-    <p><strong>Favourite Food:</strong> Pizza 🍕</p>
-
-</div>
- </body>
- </html>
+    <!-- External JS only, no inline scripts -->
+    <script src="js/script.js"></script>
+  </body>
+</html>

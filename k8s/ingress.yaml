@@ -1,0 +1,20 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+
+metadata:
+  name: food-ingress
+  namespace: food-app
+
+spec:
+  rules:
+  - host: food.local
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: food-service
+            port:
+              number: 80
+              

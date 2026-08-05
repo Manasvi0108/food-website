@@ -559,3 +559,21 @@ main p{
     float:right;
     color:#e23744;
 }
+.restaurant-btn{
+    margin-top:20px;
+    padding:15px 35px;
+    border:none;
+    border-radius:40px;
+    background:#ef4f5f;
+    color:white;
+    font-size:18px;
+    font-weight:bold;
+    cursor:pointer;
+    transition:.3s;
+    box-shadow:0 10px 25px rgba(239,79,95,.35);
+}
+
+.restaurant-btn:hover{
+    transform:translateY(-3px);
+    background:#d93b4b;
+}

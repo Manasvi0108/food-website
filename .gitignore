@@ -1,0 +1,14 @@
+# Environment secrets
+.env
+.env.local
+.env.*.local
+
+# IDE
+.vscode/
+*.swp
+*.swo
+
+# Logs / temp
+*.log
+tmp/
+temp/

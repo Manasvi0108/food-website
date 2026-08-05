@@ -203,3 +203,48 @@ window.addEventListener("DOMContentLoaded", () => {
     }
 
 });
+function loadRestaurants() {
+
+    fetch("http://127.0.0.1:5000/restaurants")
+        .then(response => response.json())
+        .then(data => {
+
+            let output = "";
+
+            data.forEach(item => {
+
+                output += `
+                <div class="card">
+                    <h2>${item.name}</h2>
+                    <p>⭐ ${item.rating}</p>
+                    <p>${item.location}</p>
+                </div>
+                `;
+
+            });
+
+            document.getElementById("restaurantList").innerHTML = output;
+
+        });
+
+}
+function loadRestaurants() {
+
+    fetch("http://127.0.0.1:5000/restaurants")
+    .then(response => response.json())
+    .then(data => {
+
+        console.log(data);
+
+        alert("Frontend connected with Backend successfully!");
+
+    })
+    .catch(error => {
+
+        console.log(error);
+
+        alert("Backend is not running!");
+
+    });
+
+}

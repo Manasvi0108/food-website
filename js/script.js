@@ -3,7 +3,7 @@
 
 
 // Global Error Handler
-window.addEventListener("error", function (event) {
+window.addEventListener("error", function(event){
 
     console.error(
         "Application Error:",
@@ -13,6 +13,7 @@ window.addEventListener("error", function (event) {
 });
 
 
+
 // Elements
 const text = document.querySelector("main p");
 const input = document.querySelector("#locationInput");
@@ -20,169 +21,110 @@ const header = document.querySelector("header");
 const logo = document.querySelector(".logo img");
 
 
-// Rate Limiting
+
+
+// Rate Limit
 const RATE_LIMIT_MS = 3000;
-let lastActionTime = performance.now();
+let lastActionTime = 0;
 
 
-// Input Sanitization
-function sanitizeInput(value) {
 
-    if (typeof value !== "string") {
+
+// Sanitizer
+function sanitizeInput(value){
+
+    if(typeof value !== "string"){
         return "";
     }
 
+
     return value
-        .replace(/[<>]/g, "")
-        .replace(/\s+/g, " ")
-        .trim();
+    .replace(/[<>]/g,"")
+    .replace(/\s+/g," ")
+    .trim();
 
 }
+
+
+
 
 
 // Location Validation
 const LOCATION_REGEX = /^[\w\s.,'-]+$/u;
 
 
-// Safe Class Helper
-function addClassSafe(el, cls) {
 
-    if (!el) return;
 
-    if (!el.classList.contains(cls)) {
-        el.classList.add(cls);
-    }
+
+// Page Animation
+
+window.addEventListener("load",()=>{
+
+
+setTimeout(()=>{
+
+if(text){
+
+text.classList.add("fadeUp");
 
 }
 
-
-// Page Load Animation
-window.addEventListener("load", () => {
-
-
-    setTimeout(() => {
-
-        if (text) {
-            text.classList.add("fadeUp");
-        }
-
-    }, 300);
+},300);
 
 
 
-    setTimeout(() => {
+setTimeout(()=>{
 
-        if (input) {
-            input.classList.add("fadeUp");
-        }
+if(input){
 
-    }, 700);
+input.classList.add("fadeUp");
+
+}
+
+},700);
 
 
 });
 
 
 
-// Placeholder Animation
 
-const placeholders = [
 
-    "Search for restaurant...",
-    "Enter your delivery location...",
-    "Search 'Pizza'...",
-    "Search 'Burger'...",
-    "Search 'Biryani'...",
-    "Search 'Ice Cream'..."
+
+
+
+// Placeholder Rotation
+
+
+const placeholders=[
+
+"Search for restaurant...",
+"Enter your delivery location...",
+"Search Pizza...",
+"Search Burger...",
+"Search Biryani..."
 
 ];
 
 
-let idx = 0;
+let index=0;
 
 
-if (input) {
-
-    setInterval(() => {
-
-        input.placeholder = placeholders[idx];
-
-        idx = (idx + 1) % placeholders.length;
+if(input){
 
 
-    }, 2500);
-
-}
+setInterval(()=>{
 
 
-
-// Enter Key Search Validation
-
-if (input) {
+input.placeholder =
+placeholders[index];
 
 
-    input.addEventListener("keydown", (e) => {
+index =
+(index+1)%placeholders.length;
 
 
-        if (e.key === "Enter") {
-
-
-            const value = sanitizeInput(input.value);
-
-
-
-            if (!value) {
-
-                console.warn("Location required");
-
-                return;
-
-            }
-
-
-
-            if (!LOCATION_REGEX.test(value)) {
-
-                console.warn("Invalid location");
-
-                return;
-
-            }
-
-
-
-
-            const now = performance.now();
-
-
-
-            if (now - lastActionTime < RATE_LIMIT_MS) {
-
-
-                console.warn(
-                    "Action rate limited. Wait."
-                );
-
-
-                return;
-
-            }
-
-
-
-            lastActionTime = now;
-
-
-
-            console.log(
-                "Searching restaurants near:",
-                value
-            );
-
-
-        }
-
-
-    });
+},2500);
 
 
 }
@@ -191,51 +133,150 @@ if (input) {
 
 
 
-// Navbar Scroll Effect
-
-window.addEventListener("scroll", () => {
-
-
-    if (!header) return;
 
 
 
-    if (window.scrollY > 20) {
+// Search Validation
 
 
-        header.style.background =
-            "rgba(203,32,45,.95)";
+if(input){
 
 
-        header.style.backdropFilter =
-            "blur(8px)";
+input.addEventListener(
+"keydown",
+(e)=>{
 
 
-        header.style.transition =
-            ".4s";
+if(e.key==="Enter"){
 
 
-    }
 
-    else {
-
-
-        header.style.background =
-            "transparent";
+const value =
+sanitizeInput(input.value);
 
 
-        header.style.backdropFilter =
-            "";
+
+if(!value){
+
+console.warn(
+"Location required"
+);
+
+return;
+
+}
 
 
-        header.style.transition =
-            "";
+
+if(!LOCATION_REGEX.test(value)){
 
 
-    }
+console.warn(
+"Invalid location"
+);
+
+return;
+
+}
+
+
+
+
+const now =
+performance.now();
+
+
+
+if(
+now-lastActionTime <
+RATE_LIMIT_MS
+){
+
+
+console.warn(
+"Too many requests"
+);
+
+
+return;
+
+}
+
+
+
+lastActionTime=now;
+
+
+
+console.log(
+"Searching:",
+value
+);
+
+
+
+}
+
 
 
 });
+
+
+}
+
+
+
+
+
+
+
+
+
+
+// Navbar Effect
+
+
+window.addEventListener(
+"scroll",
+()=>{
+
+
+if(!header)return;
+
+
+if(window.scrollY>20){
+
+
+header.style.background =
+"rgba(203,32,45,.95)";
+
+
+header.style.backdropFilter =
+"blur(8px)";
+
+
+}
+
+else{
+
+
+header.style.background =
+"transparent";
+
+
+header.style.backdropFilter =
+"";
+
+
+}
+
+
+
+});
+
+
+
+
 
 
 
@@ -243,255 +284,46 @@ window.addEventListener("scroll", () => {
 
 // Logo Animation
 
-if (logo) {
 
+if(logo){
 
-    logo.addEventListener("click", () => {
 
+logo.addEventListener(
+"click",
+()=>{
 
-        logo.animate(
 
-            [
+logo.animate(
 
-                {
-                    transform:
-                    "rotate(0deg) scale(1)"
-                },
+[
 
-
-                {
-                    transform:
-                    "rotate(10deg) scale(1.1)"
-                },
-
-
-                {
-                    transform:
-                    "rotate(-10deg) scale(1.1)"
-                },
-
-
-                {
-                    transform:
-                    "rotate(0deg) scale(1)"
-                }
-
-
-            ],
-
-
-            {
-                duration:700
-            }
-
-
-        );
-
-
-    });
-
-
-}
-
-
-
-
-
-
-
-// Link Hover Effect
-
-document.querySelectorAll("a")
-.forEach((link)=>{
-
-
-    link.addEventListener(
-        "mouseenter",
-        ()=>{
-
-            link.style.transform =
-            "translateY(-3px)";
-
-        }
-    );
-
-
-
-    link.addEventListener(
-        "mouseleave",
-        ()=>{
-
-            link.style.transform =
-            "translateY(0px)";
-
-        }
-    );
-
-
-});
-
-
-
-
-
-
-// Input Glow
-
-if(input){
-
-
-    input.addEventListener(
-        "focus",
-        ()=>{
-
-            input.style.boxShadow =
-            "0 0 30px rgba(255,255,255,.55)";
-
-        }
-    );
-
-
-
-    input.addEventListener(
-        "blur",
-        ()=>{
-
-
-            input.style.boxShadow =
-            "0 15px 35px rgba(0,0,0,.18)";
-
-
-        }
-    );
-
-
-}
-
-
-
-
-
-
-
-// Scroll Reveal Animation
-
-const observer =
-new IntersectionObserver(
-
-(entries)=>{
-
-
-entries.forEach((entry)=>{
-
-
-if(entry.isIntersecting){
-
-
-entry.target.classList.add("show");
-
-
-}
-
-
-});
-
-
+{
+transform:"scale(1)"
 },
 
 {
-threshold:0.2
+transform:"scale(1.15)"
+},
+
+{
+transform:"scale(1)"
 }
+
+
+],
+
+{
+duration:600
+}
+
 
 );
 
 
-
-
-
-document
-.querySelectorAll(
-".collections,.about,.reviews"
-)
-.forEach(section=>{
-
-
-observer.observe(section);
-
-
 });
 
 
-
-
-
-
-
-// 3D Card Tilt Effect
-
-
-document
-.querySelectorAll(".card")
-.forEach(card=>{
-
-
-card.addEventListener(
-"mousemove",
-(e)=>{
-
-
-const x=e.offsetX;
-
-const y=e.offsetY;
-
-
-const rect =
-card.getBoundingClientRect();
-
-
-
-const rotateX =
-(y - rect.height / 2) / 10;
-
-
-
-const rotateY =
-(rect.width / 2 - x) / 10;
-
-
-
-card.style.transform =
-`
-perspective(1000px)
-rotateX(${rotateX}deg)
-rotateY(${rotateY}deg)
-`;
-
-
-
-});
-
-
-
-
-
-card.addEventListener(
-"mouseleave",
-()=>{
-
-
-card.style.transform =
-`
-perspective(1000px)
-rotateX(0deg)
-rotateY(0deg)
-`;
-
-
-
-});
-
-
-});
+}
 
 
 
@@ -503,26 +335,52 @@ rotateY(0deg)
 
 // Profile Panel
 
-window.addEventListener(
+
+document.addEventListener(
 "DOMContentLoaded",
 ()=>{
 
 
 const profileBtn =
-document.getElementById("profileBtn");
+document.getElementById(
+"profileBtn"
+);
 
 
 const profilePanel =
-document.getElementById("profilePanel");
+document.getElementById(
+"profilePanel"
+);
 
 
 const closeBtn =
-document.getElementById("closeBtn");
+document.getElementById(
+"closeBtn"
+);
 
 
 
 
-if(profileBtn && profilePanel && closeBtn){
+if(
+profileBtn &&
+profilePanel &&
+closeBtn
+){
+
+
+
+profileBtn.addEventListener(
+"click",
+()=>{
+
+
+profilePanel.classList.add(
+"active"
+);
+
+
+});
+
 
 
 
@@ -547,6 +405,7 @@ profilePanel.classList.add(
 
 
 
+
 closeBtn.addEventListener(
 "click",
 ()=>{
@@ -563,6 +422,58 @@ profilePanel.classList.remove(
 }
 
 
+});
+
+
+
+
+
+
+
+
+
+
+// Scroll Reveal
+
+
+const observer =
+new IntersectionObserver(
+
+(entries)=>{
+
+
+entries.forEach(entry=>{
+
+
+if(entry.isIntersecting){
+
+entry.target.classList.add(
+"show"
+);
+
+}
+
+
+});
+
+
+},
+
+{
+threshold:0.2
+}
+
+);
+
+
+
+document
+.querySelectorAll(
+".collections,.about,.reviews"
+)
+.forEach(section=>{
+
+observer.observe(section);
 
 });
 
@@ -574,43 +485,112 @@ profilePanel.classList.remove(
 
 
 
-// Backend Restaurant Loading
+// Card Tilt
 
 
-function loadRestaurants(){
+document
+.querySelectorAll(".card")
+.forEach(card=>{
+
+
+card.addEventListener(
+"mousemove",
+(e)=>{
+
+
+const rect =
+card.getBoundingClientRect();
+
+
+const x =
+e.clientX-rect.left;
+
+
+const y =
+e.clientY-rect.top;
 
 
 
-fetch(
-"http://127.0.0.1:5000/restaurants"
-)
+const rotateX =
+(y-rect.height/2)/10;
+
+
+const rotateY =
+(rect.width/2-x)/10;
 
 
 
-.then(response=>{
+card.style.transform =
+`
+perspective(1000px)
+rotateX(${rotateX}deg)
+rotateY(${rotateY}deg)
+`;
+
+
+
+});
+
+
+
+
+
+card.addEventListener(
+"mouseleave",
+()=>{
+
+
+card.style.transform =
+"";
+
+
+});
+
+
+});
+
+
+
+
+
+
+
+
+
+
+// Backend Loading
+
+
+async function loadRestaurants(){
+
+
+try{
+
+
+const response =
+await fetch(
+"https://food-api.onrender.com/restaurants"
+);
+
 
 
 if(!response.ok){
 
 throw new Error(
-"Backend connection failed"
+"Backend failed"
 );
 
 }
 
 
-return response.json();
 
+const data =
+await response.json();
 
-})
-
-
-
-.then(data=>{
 
 
 console.log(
-"Restaurants Loaded:",
+"Restaurants:",
 data
 );
 
@@ -623,57 +603,83 @@ document.getElementById(
 
 
 
-
 if(restaurantList){
 
 
 
-let output="";
+restaurantList.textContent="";
 
 
 
 data.forEach(item=>{
 
 
-output += `
-
-<div class="card">
-
-<h2>${item.name}</h2>
-
-<p>
-⭐ ${item.rating}
-</p>
+const card =
+document.createElement(
+"div"
+);
 
 
-<p>
-${item.location}
-</p>
+card.className="card";
 
 
-</div>
 
-`;
+const name =
+document.createElement(
+"h2"
+);
+
+
+name.textContent =
+item.name;
+
+
+
+const rating =
+document.createElement(
+"p"
+);
+
+
+rating.textContent =
+"⭐ "+item.rating;
+
+
+
+const location =
+document.createElement(
+"p"
+);
+
+
+location.textContent =
+item.location;
+
+
+
+card.append(
+name,
+rating,
+location
+);
+
+
+
+restaurantList.appendChild(
+card
+);
 
 
 });
-
-
-
-restaurantList.innerHTML =
-output;
-
 
 
 }
 
 
 
-})
+}
 
-
-
-.catch(error=>{
+catch(error){
 
 
 console.error(
@@ -682,8 +688,7 @@ error
 );
 
 
-});
-
+}
 
 
 }
@@ -691,8 +696,6 @@ error
 
 
 
-
-// Run Backend Connection
 
 loadRestaurants();
 

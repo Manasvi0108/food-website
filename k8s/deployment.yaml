@@ -23,7 +23,7 @@ spec:
       containers:
       - name: food-website-container
         # IMPORTANT: Yahan actual container registry URL daalna hai
-        image: <INSERT_YOUR_ACTUAL_IMAGE_URL_HERE> 
+        image:         image: image-registry.openshift-image-registry.svc:5000/gandharvi-dev/food-image:latest
         imagePullPolicy: Always
         ports:
         - containerPort: 80

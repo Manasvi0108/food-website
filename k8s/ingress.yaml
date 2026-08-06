@@ -1,16 +1,28 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
+
 metadata:
   name: food-ingress
   namespace: gandharvi-dev
+
 spec:
+
   rules:
+
   - http:
+
       paths:
+
       - path: /
+
         pathType: Prefix
+
         backend:
+
           service:
+
             name: food-service
+
             port:
-              number: 8080
+
+              number: 80

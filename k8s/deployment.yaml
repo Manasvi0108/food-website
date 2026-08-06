@@ -1,65 +1,69 @@
 apiVersion: apps/v1
 kind: Deployment
+
 metadata:
   name: food-website-deployment
   namespace: gandharvi-dev
   labels:
     app: food-website
+
 spec:
   replicas: 3
+
   strategy:
     type: RollingUpdate
     rollingUpdate:
       maxSurge: 1
       maxUnavailable: 0
+
   selector:
     matchLabels:
       app: food-website
+
   template:
     metadata:
       labels:
         app: food-website
+
     spec:
       containers:
       - name: food-website-container
-        # OpenShift ka internal registry link
-        image: image-registry.openshift-image-registry.svc:5000/gandharvi-dev/food-image:latest
+
+        image: <YOUR_IMAGE>
+
         imagePullPolicy: Always
+
         ports:
         - containerPort: 8080
-        
-        # --- Resource Limits ---
+
         resources:
           requests:
             cpu: "100m"
             memory: "128Mi"
+
           limits:
             cpu: "500m"
             memory: "256Mi"
-            
-        # --- Health Probes (Updated to 8080) ---
+
         livenessProbe:
           httpGet:
             path: /
             port: 8080
           initialDelaySeconds: 15
           periodSeconds: 10
-          timeoutSeconds: 5
-          failureThreshold: 3
+
         readinessProbe:
           httpGet:
             path: /
             port: 8080
           initialDelaySeconds: 10
           periodSeconds: 10
-          timeoutSeconds: 5
-          successThreshold: 1
-          failureThreshold: 3
+
         startupProbe:
           httpGet:
             path: /
             port: 8080
           failureThreshold: 30
           periodSeconds: 10
-          
+
       restartPolicy: Always
